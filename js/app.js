@@ -81,10 +81,23 @@ const btnReset = document.querySelector('.btn-reset')
 /*-------------------------------- Functions --------------------------------*/
 
 //init()
-//set board array to 16 nulls
+// // set board array to 16 nulls
 //set plr to hidden = true
 //win = null
 //lose = null
 //hide reset button
 //render()
+
+function init(){
+  board = 
+  [null, null, null, null,
+  null, null, null, null,
+  null, null, null, null,
+  null, null, null, null]
+  win = null
+  lose = null
+  console.log("init runs");
+  //render()
+}
+init()
 
