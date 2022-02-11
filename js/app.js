@@ -34,7 +34,6 @@
 //we call functions in here
 //change instruction messages in here too
 
-
 // handleMovementCLick()
 // logic time
 // if the player does not share an index with the movement board array -> let the player move anywhere
@@ -48,7 +47,6 @@
 
 //todo hideTreasure
 //math.random the apple emoji
-
 
 /*---------------------------- Constants ------------------------------------*/
 
@@ -73,8 +71,7 @@ const moveArray = [
 
 /*---------------------------- Variables (state) ----------------------------*/
 
-let board, player, treasure, win, lose
-
+let boardArray, player, treasure, win, lose
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -84,45 +81,68 @@ const appleMoji = document.querySelector('#apple-emoji')
 const message = document.querySelector('#instruction-message')
 const btnSearch = document.querySelector('.btn-search')
 const btnReset = document.querySelector('.btn-reset') 
+const badgeNum = document.querySelector('.badge')
 
 /*----------------------------- Event Listeners -----------------------------*/
 
 //todo add functions to these
-//tiles.forEach(tile => tile.addEventListener('click', functionName)) 
+tiles.forEach(tile => tile.addEventListener('click', handleMovement)) 
 //btnSearch.addEventListener('click', functionName)
 // btnReset.addEventListener('click', functionName)
-
 
 /*-------------------------------- Functions --------------------------------*/
 
 function init(){
-  board = 
+  player = 
   [null, null, null, null,
   null, null, null, null,
   null, null, null, null,
   null, null, null, null]
-  win = null
+  win = null 
   lose = null
   console.log("init runs");
   message.textContent = "Click an Area to Search the Forest" 
-  //render()
+  render()
 }
 init()
 
 function render(){
   // todo  note: instruction message. IF STATEMENT: if amount of clicks is greater than 1, change this msg. (click to enter forest. nothing found. you're warm. you're warmer. you're hot.)
+  console.log('render runs')
 }
 
 // handleMovementCLick()
 // logic time
 // if the player does not share an index with the movement board array -> let the player move anywhere
 //else 
-//if the player shares an index with the board, allow the player to move the indexs associated with the player's current position and disable the other options. 
+//if the player shares an index with the board, allow the player to move only to the indexs associated with the player's current position.
 //searchSpells()
 //render()
+
+
+//handleclick
+//if there's a click, place a snake there
+//validMove
+//if there is no snake
+//move anywhere
+//if the snake is at [index]
+//can only move certain spaces
+
+function handleMovement(evt){
+  console.log("handle click/movement runs", evt.target
+
+  }
+
+
+
+
 
 //todo searchSpells()
 //if there is a movement click, reduce the amount of searches left 
 
 //todo hideTreasure
 //math.random the apple emoji
+
+
+
+
