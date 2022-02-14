@@ -42,7 +42,7 @@ const appleMoji = document.querySelector('#apple-emoji')
 const message = document.querySelector('#instruction-message')
 const btnSearch = document.querySelector('.btn-search')
 const btnReset = document.querySelector('.btn-reset') 
-const badgeNum = document.querySelector('.badge') 
+let badgeNum = document.querySelector('.badge')  
 
 /*----------------------------- Event Listeners -----------------------------*/
 
@@ -77,9 +77,9 @@ function render(){
 // todo style it approprietly/centered in the div
 function handleMovement(evt){
   const idx = evt.target.id.replace("tile-", "")
-  tiles[idx].innerHTML = "hey"
+  tiles[idx].innerHTML = "HEY" 
   // player.push(idx)
-  console.log(player)
+  // console.log(player)
   console.log("clicking works")
   validateMove()
   removeSearch()
@@ -114,11 +114,13 @@ function search(){
   console.log("search btn works")
 }
 
+
 function removeSearch(){
-  //if there is a movement click, reduce the amount of searches left 
-    badgeNum.textContent = "4"
-    console.log(badgeNum)
-  console.log("taking away your searches!!")
+  let badgeInt = parseInt(badgeNum.textContent) 
+  if (handleMovement && badgeInt !== 0){  
+  badgeInt = badgeInt - 1
+  badgeNum.textContent = badgeInt
+  }
 }
 
 function hideTreasure(){
