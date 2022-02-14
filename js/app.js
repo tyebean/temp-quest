@@ -2,23 +2,42 @@
 
 
 /*---------------------------- Constants ------------------------------------*/
-const moveArray = [
-  [2, 5], //1
-  [3, 8], //4
-  [9, 14], //13
-  [15,12], //16
-  [8, 11, 16],
-  [3,10, 15],
-  [14, 11, 16],
-  [4, 7, 12],
-  [5, 10, 3],
-  [1, 6, 3],
-  [2, 7, 4],
-  [1, 6, 9],
-  [2, 5, 7, 10],
-  [3, 8, 11, 6],
-  [6, 9, 11, 14],
-  [7, 10, 12, 15]
+// const moveArray = [
+//   [2, 5],
+//   [3, 8],
+//   [9, 14],
+//   [15,12],
+//   [8, 11, 16],
+//   [3,10, 15],
+//   [14, 11, 16],
+//   [4, 7, 12],
+//   [5, 10, 3],
+//   [1, 6, 3],
+//   [2, 7, 4],
+//   [1, 6, 9],
+//   [2, 5, 7, 10],
+//   [3, 8, 11, 6],
+//   [6, 9, 11, 14],
+//   [7, 10, 12, 15]
+// ] 
+
+const moves = [
+  [0, 0],
+  [0, 1],
+  [0, 2],
+  [0, 3],
+  [1, 0],
+  [1, 1],
+  [1, 2],
+  [1, 3],
+  [2, 0],
+  [2, 1],
+  [2, 2],
+  [2, 3],
+  [3, 0],
+  [3, 1],
+  [3, 2],
+  [3, 3]
 ]
 
 // for (let i = 0; i < moveArray.length; i++){
@@ -37,8 +56,8 @@ let player, treasure, win, lose
 /*------------------------ Cached Element References ------------------------*/
 
 const tiles = document.querySelectorAll('.tile') 
-const snakeMoji = document.querySelector('#snake-emoji')
-const appleMoji = document.querySelector('#apple-emoji')
+// const snakeMoji = document.querySelector('#snake-emoji')
+// const appleMoji = document.querySelector('#apple-emoji')
 const message = document.querySelector('#instruction-message')
 const btnSearch = document.querySelector('.btn-search')
 const btnReset = document.querySelector('.btn-reset') 
@@ -73,23 +92,30 @@ function render(){
 }
 
 // todo when a user has clicked, place the index of the position into the correct place in the player array. possibly using splice? 
-
 // todo style it approprietly/centered in the div
 function handleMovement(evt){
   const idx = evt.target.id.replace("tile-", "")
-  tiles[idx].innerHTML = "HEY" 
-  // player.push(idx)
-  // console.log(player)
+  console.log(idx)
+  tiles[idx].innerHTML = "🐍" 
+  
   console.log("clicking works")
   validateMove()
   removeSearch()
 }
 
-//validMove()
-//if there is no value inside of player array 
-//move anywhere
-//if the snake is at [index]
-//can only move certain spaces
+// todo validateMove()
+
+// ? if first turn, move anywhere
+// first: for loop - within loop: if badgeNum = 5 {
+//   you can click anywhere
+// } else if {
+  // call a function() dealing with x and y's
+//}
+// ? find out where they can click 
+
+// ! try think of moving in terms of X and Y. 
+// ! the player can move either -x or x 
+// ! or y or -y 
 
 function validateMove() {
   console.log("validating moves runs")
@@ -113,7 +139,6 @@ function search(){
   }
   console.log("search btn works")
 }
-
 
 function removeSearch(){
   let badgeInt = parseInt(badgeNum.textContent) 
