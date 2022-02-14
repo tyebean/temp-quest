@@ -1,5 +1,7 @@
-  //if there is a movement click, reduce the amount of searches left
 
+// todo - discuss with IA
+// ? place apple/player in the correct places in their arrays - update player position in array with each click 
+// ? discuss X and Y logic 
 
 /*---------------------------- Constants ------------------------------------*/
 // const moveArray = [
@@ -21,7 +23,7 @@
 //   [7, 10, 12, 15]
 // ] 
 
-const moves = [
+const board = [
   [0, 0],
   [0, 1],
   [0, 2],
@@ -40,28 +42,18 @@ const moves = [
   [3, 3]
 ]
 
-// for (let i = 0; i < moveArray.length; i++){
-//   const a = moveArray[i][0]
-//   const b = moveArray[i][1]
-//   const c = moveArray[i][2]
-//   const d = moveArray[i][3]
-//   console.log(a, b, c, d)
-//   console.log(moveArray[a])
-// }
 
 /*---------------------------- Variables (state) ----------------------------*/
 
-let player, treasure, win, lose
+let player, treasure, win, lose 
 
 /*------------------------ Cached Element References ------------------------*/
 
 const tiles = document.querySelectorAll('.tile') 
-// const snakeMoji = document.querySelector('#snake-emoji')
-// const appleMoji = document.querySelector('#apple-emoji')
 const message = document.querySelector('#instruction-message')
 const btnSearch = document.querySelector('.btn-search')
 const btnReset = document.querySelector('.btn-reset') 
-let badgeNum = document.querySelector('.badge')  
+let badgeString = document.querySelector('.badge')  
 
 /*----------------------------- Event Listeners -----------------------------*/
 
@@ -74,11 +66,8 @@ btnReset.addEventListener('click', reset)
 init()
 function init(){
   console.log("init runs");
-  player = 
-  [null, null, null, null,
-  null, null, null, null,
-  null, null, null, null,
-  null, null, null, null]
+  player = []
+  treasure = []
   win = null
   lose = null
   message.textContent = "Click an Area to Search the Forest" 
@@ -87,7 +76,6 @@ function init(){
 }
 
 function render(){
-  // todo  note: instruction message. IF STATEMENT: if amount of clicks is greater than 1, change this msg. (click to enter forest. nothing found. you're warm. you're warmer. you're hot.)
   console.log('render runs')
 }
 
@@ -95,16 +83,14 @@ function render(){
 // todo style it approprietly/centered in the div
 function handleMovement(evt){
   const idx = evt.target.id.replace("tile-", "")
-  console.log(idx)
   tiles[idx].innerHTML = "🐍" 
-  
-  console.log("clicking works")
+  player.push(idx)
+  console.log(player)
   validateMove()
   removeSearch()
 }
 
 // todo validateMove()
-
 // ? if first turn, move anywhere
 // first: for loop - within loop: if badgeNum = 5 {
 //   you can click anywhere
@@ -118,42 +104,39 @@ function handleMovement(evt){
 // ! or y or -y 
 
 function validateMove() {
+
   console.log("validating moves runs")
-  // const idx = evt.target.id.replace("tile-", "")
-  for (let i = 0; i < moveArray.length; i++){
-  if (player[i] !== null){
-    console.log("don't move anymore")
-    }
   }
-}
+
 
 // ? search
 // probably to be broken down into even more functions
 // if something got found, end game, display msg
 // if nothing found, display msg 
 function search(){
-  if (player[idx] === apple[idx]){
-    return
-  } else if (player[idx] !== apple[idx]) {
-    //nothing found msg
-  }
   console.log("search btn works")
 }
 
 function removeSearch(){
-  let badgeInt = parseInt(badgeNum.textContent) 
+  let badgeInt = parseInt(badgeString.textContent) 
   if (handleMovement && badgeInt !== 0){  
   badgeInt = badgeInt - 1
-  badgeNum.textContent = badgeInt
+  badgeString.textContent = badgeInt
+  }
+  if (badgeInt !== 5){
+    message.textContent = ""
   }
 }
 
-function hideTreasure(){
+function hideTreasure(evt){
   const random = Math.floor(Math.random() * 15 - 0) + 0;
   tiles[random].textContent = "🍎"
-  console.log("hiding trasure", random)
+  treasure.push(random)
 }
 
 function reset(){
   console.log("reset btn works")
 }
+
+
+
