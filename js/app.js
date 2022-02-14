@@ -1,29 +1,26 @@
 
-// todo - discuss with IA
 // ? place apple/player in the correct places in their arrays - update player position in array with each click 
-// ? discuss X and Y logic 
+// todo validateMove()
+// ? if first turn, move anywhere
+// first: for loop - within loop: if badgeNum = 5 {
+//   you can click anywhere
+// } else if {
+  // call a function() dealing with x and y's
+//}
+// ? find out where they can click 
+// ! try think of moving in terms of X and Y. 
+// ! the player can move either -x or x 
+// ! or y or -y 
+// ? search
+// probably to be broken down into even more functions
+// if something got found, end game, display msg
+// if nothing found, display msg 
+
+// ! use SOME or every array iterator to check if there is something in player/treasure array
 
 /*---------------------------- Constants ------------------------------------*/
-// const moveArray = [
-//   [2, 5],
-//   [3, 8],
-//   [9, 14],
-//   [15,12],
-//   [8, 11, 16],
-//   [3,10, 15],
-//   [14, 11, 16],
-//   [4, 7, 12],
-//   [5, 10, 3],
-//   [1, 6, 3],
-//   [2, 7, 4],
-//   [1, 6, 9],
-//   [2, 5, 7, 10],
-//   [3, 8, 11, 6],
-//   [6, 9, 11, 14],
-//   [7, 10, 12, 15]
-// ] 
 
-const board = [
+const coords = [
   [0, 0],
   [0, 1],
   [0, 2],
@@ -42,10 +39,9 @@ const board = [
   [3, 3]
 ]
 
-
 /*---------------------------- Variables (state) ----------------------------*/
 
-let player, treasure, win, lose 
+let player, treasure, win, lose, board
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -57,7 +53,7 @@ let badgeString = document.querySelector('.badge')
 
 /*----------------------------- Event Listeners -----------------------------*/
 
-tiles.forEach(tile => tile.addEventListener('click', handleMovement)) 
+tiles.forEach(tile => tile.addEventListener('click', handleClick)) 
 btnSearch.addEventListener('click', search)
 btnReset.addEventListener('click', reset)
 
@@ -66,8 +62,11 @@ btnReset.addEventListener('click', reset)
 init()
 function init(){
   console.log("init runs");
-  player = []
-  treasure = []
+  board = 
+  [null, null, null, null,
+  null, null, null, null,
+  null, null, null, null,
+  null, null, null, null]
   win = null
   lose = null
   message.textContent = "Click an Area to Search the Forest" 
@@ -76,67 +75,45 @@ function init(){
 }
 
 function render(){
-  console.log('render runs')
+  board.forEach((tile, idx) => {
+    if(tile === 1){
+    tiles[idx].textContent = "🐍"
+    }
+  })
 }
 
-// todo when a user has clicked, place the index of the position into the correct place in the player array. possibly using splice? 
-// todo style it approprietly/centered in the div
-function handleMovement(evt){
+function handleClick(evt){
   const idx = evt.target.id.replace("tile-", "")
-  tiles[idx].innerHTML = "🐍" 
-  player.push(idx)
-  console.log(player)
+  if (board[idx] !== null){
+    return
+  }
+  board[idx] = 1
   validateMove()
   removeSearch()
+  render()
+} 
+
+function validateMove(evt) {
+  
 }
 
-// todo validateMove()
-// ? if first turn, move anywhere
-// first: for loop - within loop: if badgeNum = 5 {
-//   you can click anywhere
-// } else if {
-  // call a function() dealing with x and y's
-//}
-// ? find out where they can click 
-
-// ! try think of moving in terms of X and Y. 
-// ! the player can move either -x or x 
-// ! or y or -y 
-
-function validateMove() {
-
-  console.log("validating moves runs")
-  }
-
-
-// ? search
-// probably to be broken down into even more functions
-// if something got found, end game, display msg
-// if nothing found, display msg 
 function search(){
   console.log("search btn works")
 }
 
 function removeSearch(){
   let badgeInt = parseInt(badgeString.textContent) 
-  if (handleMovement && badgeInt !== 0){  
+  if (handleClick && badgeInt !== 0){  
   badgeInt = badgeInt - 1
   badgeString.textContent = badgeInt
-  }
-  if (badgeInt !== 5){
-    message.textContent = ""
   }
 }
 
 function hideTreasure(evt){
   const random = Math.floor(Math.random() * 15 - 0) + 0;
   tiles[random].textContent = "🍎"
-  treasure.push(random)
 }
 
 function reset(){
   console.log("reset btn works")
 }
-
-
-
