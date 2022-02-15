@@ -1,16 +1,15 @@
 
-// ? place apple/player in the correct places in their arrays - update player position in array with each click 
-// todo validateMove()
 // ? if first turn, move anywhere
 // first: for loop - within loop: if badgeNum = 5 {
 //   you can click anywhere
 // } else if {
-  // call a function() dealing with x and y's
+// call a function() dealing with x and y's
 //}
 // ? find out where they can click 
 // ! try think of moving in terms of X and Y. 
 // ! the player can move either -x or x 
 // ! or y or -y 
+
 // ? search
 // probably to be broken down into even more functions
 // if something got found, end game, display msg
@@ -75,18 +74,35 @@ function init(){
 
 function render(){
   board.forEach((tile, idx) => {
-    if(tile === 1){
+    if (tile === 1) {
       tiles[idx].textContent = "🐍"
     }
+    if (tile === null) {
+      tiles[idx].textContent = ""
+    }
+    // if (tile === -1) {
+    //   tiles[idx].textContent = "🍎"
+    // }
   })
 }
 
 function handleClick(evt){
+  // evt.preventDefault()
   const idx = evt.target.id.replace("tile-", "")
-  if (board[idx] !== null){
+  const idxInt = parseInt(idx)
+  if (board[idxInt] !== null && board[idxInt] !== -1){
     return
   }
-  board[idx] = 1
+
+  if (board.includes(1)){
+    let num = board.indexOf(1)
+    board.splice(num, 1, null)
+    
+  }
+
+  board[idxInt] = 1
+  player = idxInt
+  // newSnake()
   validateMove()
   removeSearch()
   render()
@@ -97,7 +113,20 @@ function validateMove(evt) {
   
 }
 
-function search(){
+
+// ? search
+// probably to be broken down into even more functions
+// if something got found, end game, display msg
+// if nothing found, display msg 
+
+function search(evt){
+  if (player === treasure){
+    console.log("you win :) ")
+  } else if (player !== treasure){
+    console.log("keep looking :( ")
+  }
+  console.log(player)
+  console.log(treasure)
   console.log("search btn works")
 }
 
@@ -115,9 +144,6 @@ function hideTreasure(evt){
   board[random] = -1 
   treasure = random
 }
-
-//todo put apple (-1) in board ?
-//todo have apple coorolate with -1 ??? 
 
 function reset(){
   console.log("reset btn works")
