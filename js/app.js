@@ -92,14 +92,24 @@ function handleClick(evt){
   render()
 } 
 
+validateMove()
 function validateMove(evt) {
   console.log("validating moves")
+  for (let i = 0; i < coords.length; i++){
+    const location = player
+    const a = coords[i][0]
+    const b = coords [i][1]
+    let destination 
+    console.log(location)
+    console.log(a, b)
+    if (location +4 === destination || location -4 === destination || location +1 === destination || location -1 === destination){
+      console.log("valid move")
+    } else {
+      return
+    }
+  }
 }
 
-// ? search
-// probably to be broken down into even more functions
-// if something got found, end game, display msg
-// if nothing found, display msg 
 function search(){
   if (player === treasure){
     message.textContent = "You found the treasure!"
@@ -129,9 +139,9 @@ console.log(treasure)
 
 
 function setColors(){
-  const red = tiles[0].style.backgroundColor = "red";
-  const yellow = tiles[1].style.backgroundColor = "yellow";
-  const green = tiles[2].style.backgroundColor = "green";
+  const red = tiles[0].style.backgroundColor = "#B97A95";
+  const yellow = tiles[1].style.backgroundColor = "#F5E8C7";
+  const green = tiles[2].style.backgroundColor = "#B5CDA3";
 }
 setColors()
 
