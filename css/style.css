@@ -33,11 +33,10 @@ body {
 
 .tile {
   /* background-color: grey; */
-  border: 3px solid black;
+  border: 2px solid black;
   /* todo: add border to tiles later in js to hint at where the snake can move */
   /* border: 6px dashed rgb(77, 77, 77); */
-  margin: 4px;
-  
+  margin: 1px;
 }
 
 #snake-emoji, #apple-emoji {

@@ -1,4 +1,4 @@
-
+//validateMove()
 // ? if first turn, move anywhere
 // first: for loop - within loop: if badgeNum = 5 {
 //   you can click anywhere
@@ -9,13 +9,6 @@
 // ! try think of moving in terms of X and Y. 
 // ! the player can move either -x or x 
 // ! or y or -y 
-
-// ? search
-// probably to be broken down into even more functions
-// if something got found, end game, display msg
-// if nothing found, display msg 
-
-// ! use SOME or every array iterator to check if there is something in player/treasure array
 
 /*---------------------------- Constants ------------------------------------*/
 
@@ -40,7 +33,7 @@ const coords = [
 
 /*---------------------------- Variables (state) ----------------------------*/
 
-let player, treasure, win, lose, board
+let player, treasure, board
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -64,7 +57,7 @@ function init(){
   [null, null, null, null,
   null, null, null, null,
   null, null, null, null,
-  null, null, null, null] // try having only < two elements in board at any given time
+  null, null, null, null]
   win = null
   lose = null
   message.textContent = "Click an Area to Search the Forest" 
@@ -80,59 +73,47 @@ function render(){
     if (tile === null) {
       tiles[idx].textContent = ""
     }
-    // if (tile === -1) {
-    //   tiles[idx].textContent = "🍎"
-    // }
   })
 }
 
 function handleClick(evt){
-  // evt.preventDefault()
   const idx = evt.target.id.replace("tile-", "")
   const idxInt = parseInt(idx)
   if (board[idxInt] !== null && board[idxInt] !== -1){
     return
   }
-
   if (board.includes(1)){
     let num = board.indexOf(1)
     board.splice(num, 1, null)
-    
   }
-
   board[idxInt] = 1
   player = idxInt
-  // newSnake()
   validateMove()
-  removeSearch()
   render()
-  console.log(board)
 } 
 
 function validateMove(evt) {
-  
+  console.log("validating moves")
 }
-
 
 // ? search
 // probably to be broken down into even more functions
 // if something got found, end game, display msg
 // if nothing found, display msg 
-
-function search(evt){
+function search(){
   if (player === treasure){
-    console.log("you win :) ")
+    message.textContent = "You found the treasure!"
   } else if (player !== treasure){
-    console.log("keep looking :( ")
+    message.textContent = "Keep searching!"
+  } else if (player !== treasure && badgeString.textContent === "0"){ // ! doesn't work
+    message.textContent = "You lost."
   }
-  console.log(player)
-  console.log(treasure)
-  console.log("search btn works")
+  removeSearch()
 }
 
 function removeSearch(){
   let badgeInt = parseInt(badgeString.textContent) 
-  if (handleClick && badgeInt !== 0){  
+  if (search && badgeInt !== 0){  
   badgeInt = badgeInt - 1
   badgeString.textContent = badgeInt
   }
@@ -140,10 +121,19 @@ function removeSearch(){
 
 function hideTreasure(evt){
   const random = Math.floor(Math.random() * 15 - 0) + 0;
-  tiles[random].textContent = "🍎" // todo: hide with .hidden later
+  tiles[random].textContent.hidden = "🍎"
   board[random] = -1 
   treasure = random
 }
+console.log(treasure)
+
+
+function setColors(){
+  const red = tiles[0].style.backgroundColor = "red";
+  const yellow = tiles[1].style.backgroundColor = "yellow";
+  const green = tiles[2].style.backgroundColor = "green";
+}
+setColors()
 
 function reset(){
   console.log("reset btn works")
