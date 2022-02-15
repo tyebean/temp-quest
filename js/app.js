@@ -61,12 +61,11 @@ btnReset.addEventListener('click', reset)
 
 init()
 function init(){
-  console.log("init runs");
   board = 
   [null, null, null, null,
   null, null, null, null,
   null, null, null, null,
-  null, null, null, null]
+  null, null, null, null] // try having only < two elements in board at any given time
   win = null
   lose = null
   message.textContent = "Click an Area to Search the Forest" 
@@ -77,7 +76,7 @@ function init(){
 function render(){
   board.forEach((tile, idx) => {
     if(tile === 1){
-    tiles[idx].textContent = "🐍"
+      tiles[idx].textContent = "🐍"
     }
   })
 }
@@ -91,6 +90,7 @@ function handleClick(evt){
   validateMove()
   removeSearch()
   render()
+  console.log(board)
 } 
 
 function validateMove(evt) {
@@ -111,8 +111,13 @@ function removeSearch(){
 
 function hideTreasure(evt){
   const random = Math.floor(Math.random() * 15 - 0) + 0;
-  tiles[random].textContent = "🍎"
+  tiles[random].textContent = "🍎" // todo: hide with .hidden later
+  board[random] = -1 
+  treasure = random
 }
+
+//todo put apple (-1) in board ?
+//todo have apple coorolate with -1 ??? 
 
 function reset(){
   console.log("reset btn works")
