@@ -18,11 +18,18 @@ html {
 }
 
 body {
-  background-color: #C8C2BC;
+  background-color: #353535;
   /* Use a system font, if none are available use an available sans-sarif font */
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
         Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   margin: 0;
+}
+h1 {
+  color: aliceblue;
+}
+
+h2 {
+  color: aliceblue;
 }
 
 #board {
@@ -33,7 +40,7 @@ body {
 
 .tile {
   /* background-color: grey; */
-  border: 2px solid #292d34;
+  border: 2px solid aliceblue;
   /* todo: add border to tiles later in js to hint at where the snake can move */
   /* border: 6px dashed rgb(77, 77, 77); */
   margin: 1px;
