@@ -1,29 +1,12 @@
+
+
 //Use CSS Flexbox or Grid (or grid functionality as provided by a CSS Framework).
 //No remaining dead or commented out code.
-/*---------------------------- Constants ------------------------------------*/
-
-const coords = [
-  [0, 0],
-  [0, 1],
-  [0, 2],
-  [0, 3],
-  [1, 0],
-  [1, 1],
-  [1, 2],
-  [1, 3],
-  [2, 0],
-  [2, 1],
-  [2, 2],
-  [2, 3],
-  [3, 0],
-  [3, 1],
-  [3, 2],
-  [3, 3]
-]
+//(Must have scoring, art, sound, and animation)
 
 /*---------------------------- Variables (state) ----------------------------*/
 
-let currentPlayerLoc, treasure, board
+let currentPlayerLocation, treasure, board
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -69,61 +52,31 @@ function render(){
 function handleClick(evt){
   evt.preventDefault()
   const idxInt = parseInt(evt.target.id.replace("tile-", ""))
-  // if (board[idxInt] !== null && board[idxInt] !== -1){
-  //   return
-  // }
   if (board.includes(1)){
     if (!validateMove(idxInt))return
     let position = board.indexOf(1)
     board[position] = null
     board[idxInt] = 1
-    currentPlayerLoc = idxInt
+    currentPlayerLocation = idxInt
   } else {
     board[idxInt] = 1
-    currentPlayerLoc = idxInt
+    currentPlayerLocation = idxInt
   }
-  // givePlrCoords(player)
-  // giveTrsCoords(treasure)
-  // validateMove()
   render()
 }
 
-// * validateMove()
-
-  // // todo if board does not include 1 {valid move, all tiles glow} 
-  // if (location +4 === desintation || location -4 === destination)
-    // {tile border glow} to indicate valid move
-
-
-
-      //else
-     // {can't move to other spaces}
-  //if (location -1 === destination || location +1 === destination)
-   //{tile border glow} to indicate valid move
-     //{else}
-     //{can't move to other spaces}
-
-// todo edge case example
-// if location === [0,0] //top left corner
-//destination === [0,1], [1,0]
+// * validateMoves
+//else
+// {can't move to other spaces}
+// todo edge case example ?? unsure
+// if currentplrlocation === 0 //top left corner
+//dest === [0,1], [1,0]
 //if location === [0,3] //top right corner
 //destinatio === [0,2], [1,3]
 //if location === [3,0] // bot left corner
 //destination === [2,0], [3,1]
 //if location === [3,3] // bot right
 //destination === [2,3], [3,2]
-
-// displayValidMove()
-// function displayValidMove() {
-//   tiles.forEach((tile) => {
-//     if (board.includes(1) === false){
-//       tiles[0].style.backgroundColor = "grey";
-//     }
-//   })
-// }
-
-
-
 
 // * if the board does not contain player, you can move anywhere
 // * else, if the board contains player, start using validateMoves()
@@ -135,51 +88,24 @@ if (board.includes(1) === false) {
 }
 
 function validateMove(dest) {
-  // const location = player
-  // console.log("player is located at", location)
-  // const up = location - 4
-  // const down = location + 4
-  // const left = location - 1
-  // const right = location + 1
-  // console.log(up, down, left, right)
-  // for (let i = 0; i < board.length; i++){
-  //   if (board.includes(1) === true) {
-  //     tiles[i].style.backgroundColor = "rgba(255, 255, 255, 0)";
-  //     console.log('valid move');
-  //     }
-  //   }
-    // begin by displaying avaliable spaces
-    // make a var for up, down, left, right
-    //grab the coords of those locations
-
-    if (currentPlayerLoc + 4 === dest){
+    if (currentPlayerLocation + 4 === dest){
       return true
     }
-    if (currentPlayerLoc - 4 === dest){
+    if (currentPlayerLocation - 4 === dest){
       return true
     }
-    if (currentPlayerLoc + 1 === dest){
+    if (currentPlayerLocation + 1 === dest){
       return true
     }
-    if (currentPlayerLoc - 1 === dest){
+    if (currentPlayerLocation - 1 === dest){
       return true
     }
-    
   }
 
-
-// function givePlrCoords (plr) { 
-//   player = coords[plr]
-// }
-
-// function giveTrsCoords(trs) {
-//   trs = coords[trs]
-// }
-
 function search(){
-  if (currentPlayerLoc === treasure){
+  if (currentPlayerLocation === treasure){
     message.textContent = "You found the treasure!"
-  } else if (currentPlayerLoc !== treasure){
+  } else if (currentPlayerLocation !== treasure){
     message.textContent = "Keep searching!"
   // } else if (player !== treasure && badgeString.textContent === "0"){ // ! doesn't work
     message.textContent = "You lost."
@@ -215,8 +141,6 @@ function hideTreasure() {
 //use coords
 //set treasure to a coord (apple location) 
 // green = + or - 4
-
-
 
 function reset(){
   console.log("reset btn works")
