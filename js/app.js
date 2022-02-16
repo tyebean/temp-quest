@@ -1,4 +1,3 @@
-
 //Use CSS Flexbox or Grid (or grid functionality as provided by a CSS Framework).
 //No remaining dead or commented out code.
 /*---------------------------- Constants ------------------------------------*/
@@ -24,7 +23,7 @@ const coords = [
 
 /*---------------------------- Variables (state) ----------------------------*/
 
-let player, treasure, board
+let currentPlayerLoc, treasure, board
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -51,7 +50,7 @@ function init(){
   null, null, null, null]
   win = null
   lose = null
-  message.textContent = "Click an Area to Search the Forest" 
+  message.textContent = "Click an Area to Navigate the Forest" 
   render()
   hideTreasure()
 }
@@ -69,29 +68,34 @@ function render(){
 
 function handleClick(evt){
   evt.preventDefault()
-  const idx = evt.target.id.replace("tile-", "")
-  const idxInt = parseInt(idx)
-  if (board[idxInt] !== null && board[idxInt] !== -1){
-    return
-  }
+  const idxInt = parseInt(evt.target.id.replace("tile-", ""))
+  // if (board[idxInt] !== null && board[idxInt] !== -1){
+  //   return
+  // }
   if (board.includes(1)){
-    let num = board.indexOf(1)
-    board.splice(num, 1, null)
+    if (!validateMove(idxInt))return
+    let position = board.indexOf(1)
+    board[position] = null
+    board[idxInt] = 1
+    currentPlayerLoc = idxInt
+  } else {
+    board[idxInt] = 1
+    currentPlayerLoc = idxInt
   }
-  board[idxInt] = 1
-  player = idxInt
-  givePlrCoords(player)
-  giveTrsCoords(treasure)
-  validateMove()
+  // givePlrCoords(player)
+  // giveTrsCoords(treasure)
+  // validateMove()
   render()
 }
 
 // * validateMove()
-// location = player (a coordnate)
-// destination = iteration of the coords  
-  // todo if board does not include 1 {valid move, all tiles glow} 
+
+  // // todo if board does not include 1 {valid move, all tiles glow} 
   // if (location +4 === desintation || location -4 === destination)
     // {tile border glow} to indicate valid move
+
+
+
       //else
      // {can't move to other spaces}
   //if (location -1 === destination || location +1 === destination)
@@ -119,59 +123,65 @@ function handleClick(evt){
 // }
 
 
-// console.log(board.includes(1));
-// console.log(board);
-// if (board.includes(1) === false) {
-//   tiles[0].style.backgroundColor = "grey";
-// } else if (board.includes(1) === true) {
-//   tiles[1].style.backgroundColor = "red"
-// }
 
 
 // * if the board does not contain player, you can move anywhere
 // * else, if the board contains player, start using validateMoves()
 for (let i = 0; i < board.length; i++){
 if (board.includes(1) === false) {
-  tiles[i].style.backgroundColor = "grey";
+  tiles[i].style.backgroundColor = "rgba(255, 255, 255, .2)";
+  // todo: do not restrict click
   }
 }
 
-// ! check project requirements
+function validateMove(dest) {
+  // const location = player
+  // console.log("player is located at", location)
+  // const up = location - 4
+  // const down = location + 4
+  // const left = location - 1
+  // const right = location + 1
+  // console.log(up, down, left, right)
+  // for (let i = 0; i < board.length; i++){
+  //   if (board.includes(1) === true) {
+  //     tiles[i].style.backgroundColor = "rgba(255, 255, 255, 0)";
+  //     console.log('valid move');
+  //     }
+  //   }
+    // begin by displaying avaliable spaces
+    // make a var for up, down, left, right
+    //grab the coords of those locations
 
-function validateMove() {
-  for (let i = 0; i < board.length; i++){
-    if (board.includes(1) === true) {
-      tiles[i].style.backgroundColor = "rgba(255, 255, 255, 0)";
-      console.log('valid move');
-      }
+    if (currentPlayerLoc + 4 === dest){
+      return true
     }
-  const location = player
-  console.log(`player is located at ${location}`)
-  for (let i = 0; i < coords.length; i++){
-    let destination = coords[i]
-    console.log(destination) 
-    if (location +4 === destination || location -4 === destination && location +1 === destination || location -1 === destination){
-      console.log("valid move")
-    } else {
-      console.log("invalid/edge case moves")
+    if (currentPlayerLoc - 4 === dest){
+      return true
     }
+    if (currentPlayerLoc + 1 === dest){
+      return true
+    }
+    if (currentPlayerLoc - 1 === dest){
+      return true
+    }
+    
   }
-}
 
-function givePlrCoords (plr) { 
-  player = coords[plr]
-}
 
-function giveTrsCoords(trs) {
-  trs = coords[trs]
-}
+// function givePlrCoords (plr) { 
+//   player = coords[plr]
+// }
+
+// function giveTrsCoords(trs) {
+//   trs = coords[trs]
+// }
 
 function search(){
-  if (player === treasure){
+  if (currentPlayerLoc === treasure){
     message.textContent = "You found the treasure!"
-  } else if (player !== treasure){
+  } else if (currentPlayerLoc !== treasure){
     message.textContent = "Keep searching!"
-  } else if (player !== treasure && badgeString.textContent === "0"){ // ! doesn't work
+  // } else if (player !== treasure && badgeString.textContent === "0"){ // ! doesn't work
     message.textContent = "You lost."
   }
   removeSearch()
@@ -190,7 +200,7 @@ function hideTreasure() {
   tiles[random].textContent.hidden = "🍎"
   board[random] = -1 
   treasure = random
-  //console.log(`treasure is located at ${treasure}`)
+  console.log(`treasure is located at ${treasure}`)
 }
 
 //todo after validateMoves()
