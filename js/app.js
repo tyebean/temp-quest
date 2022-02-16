@@ -1,8 +1,14 @@
 
 
-//Use CSS Flexbox or Grid (or grid functionality as provided by a CSS Framework).
-//No remaining dead or commented out code.
-//(Must have scoring, art, sound, and animation)
+//(Must have 
+//scoring 
+//art, 
+//sound 
+//animation
+
+// todo functionality
+//should only be able to move in plus direction. then search.
+//should change color to demonstrate the above.
 
 /*---------------------------- Variables (state) ----------------------------*/
 
@@ -33,7 +39,7 @@ function init(){
   null, null, null, null]
   win = null
   lose = null
-  message.textContent = "Click an Area to Navigate the Forest" 
+  message.textContent = "Click an Area to Enter the Forest" 
   render()
   hideTreasure()
 }
@@ -41,7 +47,9 @@ function init(){
 function render(){
   board.forEach((tile, idx) => {
     if (tile === 1) {
-      tiles[idx].textContent = "🐍"
+      tiles[idx].textContent = "🐌"
+      tiles[idx].style.textAlign = "center"
+      tiles[idx].style.padding = "5px";
     }
     if (tile === null) {
       tiles[idx].textContent = ""
@@ -61,30 +69,10 @@ function handleClick(evt){
   } else {
     board[idxInt] = 1
     currentPlayerLocation = idxInt
+    message.textContent = "Click around and Search for Treasure"
+    tiles[0].style.backgroundColor = "rgba(255, 255, 255, .2)"
   }
   render()
-}
-
-// * validateMoves
-//else
-// {can't move to other spaces}
-// todo edge case example ?? unsure
-// if currentplrlocation === 0 //top left corner
-//dest === [0,1], [1,0]
-//if location === [0,3] //top right corner
-//destinatio === [0,2], [1,3]
-//if location === [3,0] // bot left corner
-//destination === [2,0], [3,1]
-//if location === [3,3] // bot right
-//destination === [2,3], [3,2]
-
-// * if the board does not contain player, you can move anywhere
-// * else, if the board contains player, start using validateMoves()
-for (let i = 0; i < board.length; i++){
-if (board.includes(1) === false) {
-  tiles[i].style.backgroundColor = "rgba(255, 255, 255, .2)";
-  // todo: do not restrict click
-  }
 }
 
 function validateMove(dest) {
@@ -103,12 +91,15 @@ function validateMove(dest) {
   }
 
 function search(){
+  console.log(badgeString.innerHTML)
   if (currentPlayerLocation === treasure){
+    tiles[treasure].textContent = "🍄"
     message.textContent = "You found the treasure!"
+    confetti.start(2000)
   } else if (currentPlayerLocation !== treasure){
-    message.textContent = "Keep searching!"
-  // } else if (player !== treasure && badgeString.textContent === "0"){ // ! doesn't work
-    message.textContent = "You lost."
+    message.textContent = "Keep looking!"
+  } else if (player !== treasure || badgeString.innerHTML === '0') { // ! doesn't work
+    message.textContent = "You ran out of Searches."
   }
   removeSearch()
 }
@@ -123,25 +114,14 @@ function removeSearch(){
 
 function hideTreasure() {
   const random = Math.floor(Math.random() * 15 - 0) + 0;
-  tiles[random].textContent.hidden = "🍎"
+  tiles[random].textContent.hidden = "🍄"
+  tiles[random].style.textAlign = "center"
+  tiles[random].style.padding = "5px";
   board[random] = -1 
   treasure = random
   console.log(`treasure is located at ${treasure}`)
 }
 
-//todo after validateMoves()
-// function setColors(){
-//   const red = tiles[0].style.backgroundColor = "#B97A95";
-//   const yellow = tiles[1].style.backgroundColor = "#F5E8C7";
-//   const green = tiles[2].style.backgroundColor = "#B5CDA3";
-// }
-// setColors()
-
-//todo logic for setColors
-//use coords
-//set treasure to a coord (apple location) 
-// green = + or - 4
-
 function reset(){
-  console.log("reset btn works")
+  init()
 }
