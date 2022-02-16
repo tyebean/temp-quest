@@ -1,4 +1,6 @@
 
+//Use CSS Flexbox or Grid (or grid functionality as provided by a CSS Framework).
+//No remaining dead or commented out code.
 /*---------------------------- Constants ------------------------------------*/
 
 const coords = [
@@ -133,6 +135,8 @@ if (board.includes(1) === false) {
   tiles[i].style.backgroundColor = "grey";
   }
 }
+
+// ! check project requirements
 
 function validateMove() {
   for (let i = 0; i < board.length; i++){
