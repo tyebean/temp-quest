@@ -31,6 +31,7 @@ h1 {
 h2 {
   color: rgb(195, 202, 207);
   font-size: 12px;
+  margin: 0 0 0 10;
 }
 
 #board {

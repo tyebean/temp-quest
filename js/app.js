@@ -1,6 +1,6 @@
 
 //(Must have 
-//scoring 
+// // scoring 
 // // art, 
 //sound 
 //animation
@@ -83,30 +83,29 @@ function validateMove(dest) {
     }
   }
 
+//`You Win with a Score of ${badgeString.textContent - 1}!`
+
 function search(){
   if (currentPlayerLocation === treasure){
-    // btnSearch.disabled = true // todo 
+    btnSearch.disabled = true
     tiles[treasure].textContent = "🍄"
-    message.textContent = `You found the treasure! You Win with a Score of ${badgeString.textContent - 1}!` //todo add new h2 element underneath the first h2 displaying the score
+    message.textContent = `You found the treasure!`
+    const newHeadline = document.createElement("h1");
+    newHeadline.innerHTML = `You Win with a Score of ${badgeString.textContent - 1}!`
+    newHeadline.style.textAlign = "center"
+    newHeadline.style.fontSize = "8px"
+    newHeadline.style.color = "yellow"
+    newHeadline.style.margin = "5px";
+    message.appendChild(newHeadline);
     confetti.start(2000)
   } else if (currentPlayerLocation !== treasure){
     message.textContent = "Keep looking!"
   }
-  if (currentPlayerLocation !== treasure && badgeString.innerHTML === '0'){ // ! not working
+  if (currentPlayerLocation !== treasure && badgeString.innerHTML === '0'){ 
     message.textContent = "You ran out of Searches. You lose."
   }
-
-  console.log('inside search');
-  // if (badgeString.innerHTML === '0'){
-  //   confetti.start(2000)
-  // }
-  // console.log(badgeString.innerHTML)
-
-
   removeSearch()
 }
-
-
 
 function removeSearch(){
   let badgeInt = parseInt(badgeString.textContent) 
@@ -127,5 +126,6 @@ function hideTreasure() {
 }
 
 function reset(){
+  btnSearch.disabled = false
   init()
 }
