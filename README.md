@@ -1,9 +1,9 @@
 
 # Temp Quest
 
-#### **To Play the Game**
+#### To play the game, go [here!](https://tearful-expert.surge.sh/)
 
-Go [here!](vengeful-impulse.surge.sh)
+
 
 #### **The Thought Process**
 
