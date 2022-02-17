@@ -82,12 +82,13 @@ function search(){
     btnSearch.disabled = true
     tiles[treasure].textContent = "🍄"
     message.textContent = `You found the treasure!`
+    message.style.textAlign = "center"
     gameActive = false
     const newHeadline = document.createElement("h1");
     newHeadline.innerHTML = `You Win with a Score of +${badgeString.textContent - 1} points!`
     newHeadline.style.textAlign = "center"
     newHeadline.style.fontSize = "10px"
-    newHeadline.style.color = "yellow"
+    newHeadline.style.color = "#ECFBFC"
     newHeadline.style.margin = "5px";
     message.appendChild(newHeadline);
     if (badgeString.innerHTML === '1'){
@@ -108,14 +109,13 @@ function search(){
   if (currentPlayerLocation !== treasure && badgeString.innerHTML === '1'){ 
     lose.volume = .10
     lose.play()
-    title.classList.add('animate__animated', 'animate__bounce');
+    title.classList.add('animate__animated', 'animate__shakeX');
     message.textContent = "You ran out of Searches. You lose."
     btnSearch.disabled = true
     gameActive = false
   }
   removeSearch()
 }
-
 
 function checkProx(){
   if (currentPlayerLocation +1  === treasure || currentPlayerLocation -1 === treasure || currentPlayerLocation + 4 === treasure || currentPlayerLocation - 4 === treasure){
@@ -139,7 +139,7 @@ function hideTreasure() {
   tiles[random].style.padding = "5px";
   board[random] = -1 
   treasure = random
-  console.log(`treasure is located at ${treasure}`)
+  console.log(`treasure is located at ${treasure}`) // ! remove before turn-in time !!!!!!! 
 }
 
 function reset(){
@@ -147,3 +147,4 @@ function reset(){
   btnSearch.disabled = false
   init()
 }
+
