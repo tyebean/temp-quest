@@ -1,13 +1,16 @@
 
 # Temp Quest
 
-#### To play the game, go [here!](https://tearful-expert.surge.sh/)
+Temp Quest follows the thrilling journey of a young snail who is looking for a little somethin'.
+Click anywhere on the board to enter the forest, then click in a cardinal direction relative to your snail to look around! Searching is a valuable -but limited- resourse that leads you and your snail to a tasty luncheon. 
+
+#### To play the game, go [here!](productive-year.surge.sh)
 
 
-
-#### **The Thought Process**
+### **The Thought Process**
 
 A peek at the wireframe and gameplay.
+
 ![](readme-imgs/wireframe1.png)
 ![](readme-imgs/game1.png)
 ![](readme-imgs/game2.png)
@@ -15,8 +18,11 @@ A peek at the wireframe and gameplay.
 ### **Technology Used** 
 
 ![](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)
+
 ![](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+
 ![](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+
 ![](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
 
 ### **Credits**

@@ -148,22 +148,3 @@ function reset(){
   init()
 }
 
-btnSearch.addEventListener("mouseover", () => {
-  btnSearch.style.backgroundColor = "#a4736a"
-  btnSearch.style.color = "black"
-})
-
-btnSearch.addEventListener("mouseout", () => {
-  btnSearch.style.backgroundColor = ""
-  btnSearch.style.color = ""
-})
-
-btnReset.addEventListener("mouseover", () => {
-  btnReset.style.backgroundColor = "#bd9f85"
-  btnReset.style.color = "black"
-})
-
-btnReset.addEventListener("mouseout", () => {
-  btnReset.style.backgroundColor = ""
-  btnReset.style.color = ""
-})

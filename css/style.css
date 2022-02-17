@@ -50,27 +50,3 @@ button {
   margin: 5px;
 }
 
-.btn-search {
-  color: black;
-  background-color: #FFC8BD;
-  border: #FFC8BD;
-}
-
-.badge{
-  color: white;
-}
-
-.btn-reset{
-  color: black;
-  background-color: #FFEBD9;
-  border: #FFEBD9;
-}
-
-h1 {
-  /* search */
-  background-color: #a4736a;
-  border: #a4736a;
-  /* reset */
-  background-color: #bd9f85;
-  border: #bd9f85;
-}
