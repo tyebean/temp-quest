@@ -6,3 +6,10 @@ Screenshot(s): Images of your actual game.
 Technologies Used: List of the technologies used, for example: JavaScript, HTML, CSS, etc.
 Next Steps: Planned future enhancements (icebox items).
 Don’t underestimate the value of a well-crafted README.md. The README.md introduces your project to prospective employers and forms their first impression of your work! -->
+
+//future additions:
+// todo functionality
+//should only be able to move once in a cardinal direction. then search. then continue to move from last position.
+//should change color to demonstrate the allowed move positions.
+// tiles[0].style.backgroundColor = "rgba(255, 255, 255, .2)"
+

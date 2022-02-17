@@ -1,14 +1,9 @@
 
-
 //(Must have 
 //scoring 
-//art, 
+// // art, 
 //sound 
 //animation
-
-// todo functionality
-//should only be able to move in plus direction. then search.
-//should change color to demonstrate the above.
 
 /*---------------------------- Variables (state) ----------------------------*/
 
@@ -58,19 +53,17 @@ function render(){
 }
 
 function handleClick(evt){
-  evt.preventDefault()
   const idxInt = parseInt(evt.target.id.replace("tile-", ""))
   if (board.includes(1)){
     if (!validateMove(idxInt))return
-    let position = board.indexOf(1)
-    board[position] = null
-    board[idxInt] = 1
+    let position = board.indexOf(1) 
+    board[position] = null 
+    board[idxInt] = 1 
     currentPlayerLocation = idxInt
   } else {
     board[idxInt] = 1
     currentPlayerLocation = idxInt
     message.textContent = "Click around and Search for Treasure"
-    tiles[0].style.backgroundColor = "rgba(255, 255, 255, .2)"
   }
   render()
 }
@@ -91,18 +84,29 @@ function validateMove(dest) {
   }
 
 function search(){
-  console.log(badgeString.innerHTML)
   if (currentPlayerLocation === treasure){
+    // btnSearch.disabled = true // todo 
     tiles[treasure].textContent = "🍄"
-    message.textContent = "You found the treasure!"
+    message.textContent = `You found the treasure! You Win with a Score of ${badgeString.textContent - 1}!` //todo add new h2 element underneath the first h2 displaying the score
     confetti.start(2000)
   } else if (currentPlayerLocation !== treasure){
     message.textContent = "Keep looking!"
-  } else if (player !== treasure || badgeString.innerHTML === '0') { // ! doesn't work
-    message.textContent = "You ran out of Searches."
   }
+  if (currentPlayerLocation !== treasure && badgeString.innerHTML === '0'){ // ! not working
+    message.textContent = "You ran out of Searches. You lose."
+  }
+
+  console.log('inside search');
+  // if (badgeString.innerHTML === '0'){
+  //   confetti.start(2000)
+  // }
+  // console.log(badgeString.innerHTML)
+
+
   removeSearch()
 }
+
+
 
 function removeSearch(){
   let badgeInt = parseInt(badgeString.textContent) 
