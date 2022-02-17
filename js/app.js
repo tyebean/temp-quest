@@ -2,12 +2,16 @@
 //(Must have 
 // // scoring 
 // // art, 
-//sound 
+// // sound 
 //animation
 
 /*---------------------------- Variables (state) ----------------------------*/
 
 let currentPlayerLocation, treasure, board
+const lose = new Audio("../sounds/lose.mp3")
+const win = new Audio("../sounds/win.mp3")
+const moveAndSearch = new Audio("../sounds/move:search - credit zapsplat.mp3")
+
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -32,8 +36,6 @@ function init(){
   null, null, null, null,
   null, null, null, null,
   null, null, null, null]
-  win = null
-  lose = null
   message.textContent = "Click an Area to Enter the Forest" 
   render()
   hideTreasure()
@@ -64,6 +66,8 @@ function handleClick(evt){
     board[idxInt] = 1
     currentPlayerLocation = idxInt
     message.textContent = "Click around and Search for Treasure"
+    moveAndSearch.play()
+    moveAndSearch.volume = .10
   }
   render()
 }
@@ -87,6 +91,8 @@ function validateMove(dest) {
 
 function search(){
   if (currentPlayerLocation === treasure){
+    win.volume = .1
+    win.play()
     btnSearch.disabled = true
     tiles[treasure].textContent = "🍄"
     message.textContent = `You found the treasure!`
@@ -99,10 +105,14 @@ function search(){
     message.appendChild(newHeadline);
     confetti.start(2000)
   } else if (currentPlayerLocation !== treasure){
+    moveAndSearch.play()
     message.textContent = "Keep looking!"
   }
   if (currentPlayerLocation !== treasure && badgeString.innerHTML === '0'){ 
+    lose.volume = .10
+    lose.play()
     message.textContent = "You ran out of Searches. You lose."
+    btnSearch.disabled = true
   }
   removeSearch()
 }
