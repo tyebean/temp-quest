@@ -73,18 +73,12 @@ function handleClick(evt){
 }
 
 function validateMove(dest) {
-    if (currentPlayerLocation + 4 === dest){
+    if (currentPlayerLocation + 4 === dest || currentPlayerLocation - 4 === dest || currentPlayerLocation + 1 === dest || currentPlayerLocation - 1 === dest){
       return true
     }
-    if (currentPlayerLocation - 4 === dest){
-      return true
-    }
-    if (currentPlayerLocation + 1 === dest){
-      return true
-    }
-    if (currentPlayerLocation - 1 === dest){
-      return true
-    }
+    // if (currentPlayerLocation + 1 === dest || currentPlayerLocation - 1 === dest){
+    //   return true
+    // }
   }
 
 //`You Win with a Score of ${badgeString.textContent - 1}!`
@@ -97,12 +91,15 @@ function search(){
     tiles[treasure].textContent = "🍄"
     message.textContent = `You found the treasure!`
     const newHeadline = document.createElement("h1");
-    newHeadline.innerHTML = `You Win with a Score of ${badgeString.textContent - 1}!`
+    newHeadline.innerHTML = `You Win with a Score of +${badgeString.textContent - 1} points!`
     newHeadline.style.textAlign = "center"
     newHeadline.style.fontSize = "8px"
     newHeadline.style.color = "yellow"
     newHeadline.style.margin = "5px";
     message.appendChild(newHeadline);
+    if (badgeString.innerHTML === '0'){
+      newHeadline.innerHTML = `You Win with a Score of +${badgeString.textContent - 1} points! Try finding the Treasure with less Searches next time to get more points.`
+    }
     confetti.start(2000)
   } else if (currentPlayerLocation !== treasure){
     moveAndSearch.play()
