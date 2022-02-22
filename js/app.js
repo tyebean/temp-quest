@@ -107,6 +107,7 @@ function search(){
     message.textContent = checkProx()
   }
   if (currentPlayerLocation !== treasure && badgeString.innerHTML === '1'){ 
+    tiles[treasure].textContent = "🍄"
     lose.volume = .10
     lose.play()
     title.classList.add('animate__animated', 'animate__shakeX');
@@ -139,7 +140,6 @@ function hideTreasure() {
   tiles[random].style.padding = "5px";
   board[random] = -1 
   treasure = random
-  console.log(`treasure is located at ${treasure}`) // ! remove before turn-in time !!!!!!! 
 }
 
 function reset(){

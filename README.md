@@ -4,7 +4,7 @@
 Temp Quest follows the thrilling journey of a young snail who is looking for a little somethin'.
 Click anywhere on the board to enter the forest, then click in a cardinal direction relative to your snail to look around! Searching is a valuable -but limited- resourse that leads you and your snail to a tasty luncheon. 
 
-#### To play the game, go [here!](productive-year.surge.sh)
+#### To play the game, go [here!](helpful-winter.surge.sh)
 
 
 ### **The Thought Process**
@@ -13,7 +13,6 @@ A peek at the wireframe and gameplay.
 
 ![](readme-imgs/wireframe1.png)
 ![](readme-imgs/game1.png)
-![](readme-imgs/game2.png)
 
 ### **Technology Used** 
 
